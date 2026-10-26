@@ -1,0 +1,11 @@
+const telefone='5531988055493';
+const mensagem=encodeURIComponent('Olá! Vim pelo site e gostaria de saber mais sobre uma avaliação na Estética Luana Mariano.');
+document.querySelectorAll('[data-whats]').forEach(a=>{a.href=`https://wa.me/${telefone}?text=${mensagem}`;a.target='_blank';a.rel='noopener'});
+const cursor=document.querySelector('.cursor');
+window.addEventListener('pointermove',e=>{cursor.style.left=e.clientX+'px';cursor.style.top=e.clientY+'px'});
+document.querySelectorAll('a,button,article').forEach(el=>{el.addEventListener('mouseenter',()=>{cursor.style.width='32px';cursor.style.height='32px'});el.addEventListener('mouseleave',()=>{cursor.style.width='12px';cursor.style.height='12px'})});
+const observer=new IntersectionObserver(entries=>entries.forEach(entry=>{if(entry.isIntersecting){entry.target.animate([{opacity:0,transform:'translateY(28px)'},{opacity:1,transform:'translateY(0)'}],{duration:750,easing:'cubic-bezier(.2,.7,.2,1)',fill:'both'});observer.unobserve(entry.target)}}),{threshold:.12});
+document.querySelectorAll('.secao-topo,.manifesto-grid,.lista-tratamentos article,.relatos article,.convite-copy,.endereco').forEach(el=>observer.observe(el));
+const menu=document.querySelector('.menu');
+menu.addEventListener('click',()=>{const nav=document.querySelector('.topo nav');const aberto=nav.classList.toggle('aberto');if(aberto){Object.assign(nav.style,{display:'flex',position:'absolute',top:'76px',left:'0',right:'0',padding:'28px 22px',background:'#f3eee7',flexDirection:'column',gap:'24px',borderBottom:'1px solid #29251f22'})}else nav.removeAttribute('style')});
+window.addEventListener('scroll',()=>{const y=window.scrollY;document.querySelector('.halo').style.transform=`translateY(${y*.08}px)`});
